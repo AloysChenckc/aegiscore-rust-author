@@ -1,0 +1,7 @@
+interface:
+  display_name: "AegisCore Rust Author"
+  short_description: "Rust-first blueprint authoring runtime"
+default_prompt: "Use $aegiscore-rust-author to generate or normalize a Rust-first blueprint package, module language catalog, and machine-readable contract for aegiscore-rust-runtime."
+
+policy:
+  allow_implicit_invocation: true

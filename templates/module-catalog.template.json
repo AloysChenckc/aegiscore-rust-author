@@ -1,0 +1,27 @@
+{
+  "schema_version": "ara.module-catalog.v1",
+  "modules": [
+    {
+      "module_id": "contract-compiler",
+      "layer": "core",
+      "responsibility": "Compile normalized blueprint data into resolved machine-readable contract outputs.",
+      "recommended_language": "rust",
+      "allowed_languages": [
+        "rust"
+      ],
+      "forbidden_languages": [
+        "powershell",
+        "sh",
+        "python",
+        "nodejs"
+      ],
+      "reason": "Core truth modules must be deterministic, strongly typed, and cross-platform stable.",
+      "hot_path": true,
+      "cross_platform_requirement": "required",
+      "boundary_type": "library",
+      "owned_artifacts": [
+        ".codex/auto-dev/resolved-contract.json"
+      ]
+    }
+  ]
+}

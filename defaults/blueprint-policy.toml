@@ -1,0 +1,12 @@
+schema_version = "ara.blueprint-policy.v1"
+default_mode = "new-project"
+emit_machine_outputs = true
+stop_at_readiness = "candidate-for-blueprint-gate"
+require_module_language_assignments = true
+require_machine_contract = true
+
+[package]
+blueprint_root = "blueprint"
+contract_root = ".codex/auto-dev"
+manifest_file = ".codex/auto-dev/blueprint-manifest.json"
+author_report_file = ".codex/auto-dev/author-report.md"

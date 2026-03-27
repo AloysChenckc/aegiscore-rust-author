@@ -1,0 +1,37 @@
+schema_version = "ara.module-language-policy.v1"
+
+[[rules]]
+layer = "schemas"
+recommended_language = "rust"
+allowed_languages = ["rust"]
+forbidden_languages = ["powershell", "sh", "bat", "python", "nodejs"]
+
+[[rules]]
+layer = "core"
+recommended_language = "rust"
+allowed_languages = ["rust"]
+forbidden_languages = ["powershell", "sh", "bat", "python", "nodejs"]
+
+[[rules]]
+layer = "runtime"
+recommended_language = "rust"
+allowed_languages = ["rust"]
+forbidden_languages = ["powershell", "sh", "bat", "python", "nodejs"]
+
+[[rules]]
+layer = "host-api"
+recommended_language = "rust"
+allowed_languages = ["rust"]
+forbidden_languages = ["powershell", "sh", "bat", "python", "nodejs"]
+
+[[rules]]
+layer = "wrapper-windows"
+recommended_language = "powershell"
+allowed_languages = ["powershell", "bat"]
+forbidden_languages = ["rust", "python", "nodejs"]
+
+[[rules]]
+layer = "wrapper-unix"
+recommended_language = "sh"
+allowed_languages = ["sh"]
+forbidden_languages = ["rust", "python", "nodejs"]

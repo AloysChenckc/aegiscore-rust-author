@@ -1,0 +1,8 @@
+{
+  "schema_version": "ara.normalization-report.v1",
+  "source_type": "external-blueprint",
+  "preserved_sections": [],
+  "inferred_sections": [],
+  "unresolved_ambiguities": [],
+  "status": "normalized"
+}

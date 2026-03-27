@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aegiscore.local/schemas/ara-logging-schema.json",
+  "title": "AegisCore Rust Author Logging Schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "event_name",
+    "level",
+    "correlation_id",
+    "workspace",
+    "command",
+    "message",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "event_name": { "type": "string" },
+    "level": { "type": "string", "enum": ["trace", "debug", "info", "warn", "error"] },
+    "correlation_id": { "type": "string" },
+    "workspace": { "type": "string" },
+    "stage": { "type": ["string", "null"] },
+    "loop_id": { "type": ["string", "null"] },
+    "command": { "type": "string" },
+    "decision_code": { "type": ["string", "null"] },
+    "error_code": { "type": ["string", "null"] },
+    "report_path": { "type": ["string", "null"] },
+    "fingerprint": { "type": ["string", "null"] },
+    "message": { "type": "string" },
+    "timestamp_utc": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,10 @@
+schema_version = "ara.normalization-policy.v1"
+preserve_source_provenance = true
+allow_authority_rewrite = false
+allow_implicit_stage_creation = false
+require_deterministic_stage_ids = true
+require_unresolved_ambiguities_report = true
+
+[import]
+supported_sources = ["markdown", "json", "toml"]
+normalize_paths_to_forward_slashes = true

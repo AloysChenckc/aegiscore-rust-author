@@ -1,0 +1,12 @@
+{
+  "schema_version": "ara.readiness.v3",
+  "state": "candidate-for-blueprint-gate",
+  "reason": "Authoring completed and package is ready for aegiscore-rust-runtime blueprint gate.",
+  "fingerprint": "replace-me",
+  "blocking_semantic_conflict_count": 0,
+  "review_required_semantic_conflict_count": 0,
+  "high_risk_patch_operation_count": 0,
+  "review_required_patch_operation_count": 0,
+  "gate_holds": [],
+  "recommended_actions": []
+}

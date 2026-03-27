@@ -1,0 +1,23 @@
+[workspace]
+members = [
+  "crates/ara-schemas",
+  "crates/ara-core",
+  "crates/ara-runtime",
+  "crates/ara-cli",
+  "crates/ara-host-api",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+license = "MIT"
+authors = ["AegisCore"]
+
+[workspace.dependencies]
+clap = { version = "4.5.38", features = ["derive"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+thiserror = "2.0.12"
+time = { version = "0.3.39", features = ["formatting"] }
+toml = "0.8.20"

@@ -1,0 +1,12 @@
+{
+  "schema_version": "ara.blueprint-manifest.v1",
+  "files": [
+    {
+      "path": "blueprint/authority/00-authority-root.md",
+      "doc_role": "authority",
+      "canonical_id": "authority-root",
+      "source_provenance": "generated",
+      "fingerprint": "replace-me"
+    }
+  ]
+}

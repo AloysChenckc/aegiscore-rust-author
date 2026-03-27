@@ -1,0 +1,16 @@
+schema_version = "ara.project-contract.v1"
+project_name = "replace-me"
+workflow_mode = "staged"
+
+[paths]
+blueprint_root = "blueprint"
+authority_root = "blueprint/authority"
+workflow_root = "blueprint/workflow"
+stages_root = "blueprint/stages"
+modules_root = "blueprint/modules"
+contract_root = ".codex/auto-dev"
+
+[[stages]]
+stage_id = "stage-01"
+stage_name = "foundation"
+default_next_goal = "Produce authority, workflow, and stage documentation."
