@@ -20,7 +20,7 @@ Typical problems include:
 - inconsistent formats across different AI-generated blueprints
 - weak handoff quality for downstream runtimes or agents
 
-`aegiscore-rust-author` addresses that gap by moving blueprint authoring from “helpful text generation” to “validated engineering protocol generation”.
+`aegiscore-rust-author` addresses that gap by moving blueprint authoring from "helpful text generation" to "validated engineering protocol generation".
 
 ---
 
@@ -42,7 +42,7 @@ Typical problems include:
 
 ## Core Positioning
 
-This project is not a freeform “AI planner” and not a universal document interpreter.
+This project is not a freeform "AI planner" and not a universal document interpreter.
 
 Its strength is:
 
@@ -84,6 +84,41 @@ It does **not** own:
 - `git worktree` lifecycle management
 
 Those runtime-execution responsibilities belong to `aegiscore-rust-runtime`.
+
+---
+
+## Installation
+
+### Requirements
+
+- Rust toolchain
+- Cargo
+- Windows, macOS, or Linux
+
+Recommended:
+
+- a dedicated workspace directory for emitted blueprint bundles
+- a downstream runtime such as `aegiscore-rust-runtime`
+
+### Build from source
+
+```powershell
+git clone https://github.com/AloysChenckc/aegiscore-rust-author.git
+cd aegiscore-rust-author
+cargo check --workspace
+```
+
+### Validate the package itself
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-skill-package.ps1
+```
+
+### Run the end-to-end self-check
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\run-self-check.ps1
+```
 
 ---
 
@@ -163,24 +198,105 @@ Once the package validates successfully and reaches `candidate-for-blueprint-gat
 
 ---
 
+## CLI Commands
+
+The main command surface lives in `ara-cli`.
+
+### Emit a package
+
+```powershell
+cargo run -p ara-cli -- emit --workspace C:\Path\To\Workspace --project-name my-project --source-summary "Project summary" --mode new-project
+```
+
+### Import an external blueprint
+
+```powershell
+cargo run -p ara-cli -- emit --workspace C:\Path\To\Workspace --project-name my-project --source-summary "Imported blueprint" --source-file C:\Path\To\blueprint.md --mode import-blueprint
+```
+
+### Update an existing package
+
+```powershell
+cargo run -p ara-cli -- update --workspace C:\Path\To\Workspace --project-name my-project --source-summary "Update summary" --source-file C:\Path\To\update.md
+```
+
+### Recompile the contract
+
+```powershell
+cargo run -p ara-cli -- recompile --workspace C:\Path\To\Workspace --project-name my-project --source-summary "Recompile contract"
+```
+
+### Validate an emitted workspace
+
+```powershell
+cargo run -p ara-cli -- validate-workspace --workspace C:\Path\To\Workspace
+```
+
+### Apply a patch plan
+
+```powershell
+cargo run -p ara-cli -- apply-patch-plan --workspace C:\Path\To\Workspace
+```
+
+### Migrate an older workspace
+
+```powershell
+cargo run -p ara-cli -- migrate-workspace --workspace C:\Path\To\Workspace
+```
+
+---
+
+## Example Workflow
+
+Here is the recommended flow when using `aegiscore-rust-author` as the authoring layer in a staged AI-development system:
+
+1. Prepare a blueprint source.
+   This can be an idea note, an external AI blueprint, or architecture guidance.
+
+2. Emit a normalized package.
+   Use `emit` with `new-project` or `import-blueprint`.
+
+3. Validate the package from disk.
+   Run `validate-workspace` so emitted truth is reloaded and rechecked.
+
+4. Inspect the gate artifacts.
+   Review:
+   - `readiness.json`
+   - `decision-summary.json`
+   - `agent-brief.json`
+
+5. Hand off to execution.
+   Pass the validated package to `aegiscore-rust-runtime`.
+
+6. If the blueprint changes later:
+   - run `update`
+   - inspect `patch-plan.json` and `patch-execution-report.json`
+   - revalidate the workspace
+
+7. If schema drift occurs:
+   - run `migrate-workspace`
+   - revalidate after migration
+
+---
+
 ## Project Structure
 
 ```text
 aegiscore-rust-author/
-├── crates/
-│   ├── ara-schemas/
-│   ├── ara-core/
-│   ├── ara-runtime/
-│   ├── ara-cli/
-│   └── ara-host-api/
-├── defaults/
-├── docs/
-├── exports/
-├── scripts/
-├── templates/
-├── wrappers/
-├── SKILL.md
-└── Cargo.toml
+|- crates/
+|  |- ara-schemas/
+|  |- ara-core/
+|  |- ara-runtime/
+|  |- ara-cli/
+|  `- ara-host-api/
+|- defaults/
+|- docs/
+|- exports/
+|- scripts/
+|- templates/
+|- wrappers/
+|- SKILL.md
+`- Cargo.toml
 ```
 
 ### Key directories
@@ -221,22 +337,22 @@ A generated workspace typically looks like this:
 
 ```text
 <workspace>/
-├── blueprint/
-│   ├── authority/
-│   ├── workflow/
-│   ├── stages/
-│   └── modules/
-└── .codex/
-    └── auto-dev/
-        ├── project-contract.toml
-        ├── resolved-contract.json
-        ├── semantic-ir.json
-        ├── normalization-report.json
-        ├── patch-plan.json
-        ├── worktree-protocol.json
-        ├── readiness.json
-        ├── decision-summary.json
-        └── agent-brief.json
+|- blueprint/
+|  |- authority/
+|  |- workflow/
+|  |- stages/
+|  `- modules/
+`- .codex/
+   `- auto-dev/
+      |- project-contract.toml
+      |- resolved-contract.json
+      |- semantic-ir.json
+      |- normalization-report.json
+      |- patch-plan.json
+      |- worktree-protocol.json
+      |- readiness.json
+      |- decision-summary.json
+      `- agent-brief.json
 ```
 
 ---
@@ -343,7 +459,7 @@ Rust is used here for:
 - stable machine artifact generation
 - reliable validation, replay, and migration logic
 - better cross-platform behavior
-- a clean library-first + CLI-first runtime shape
+- a clean library-first plus CLI-first runtime shape
 
 Language split:
 
@@ -397,7 +513,7 @@ In short, it prefers systems that are explainable, replayable, and hard to silen
 
 ## Open Source Value
 
-The open-source value of this project is not simply “another AI tool”.
+The open-source value of this project is not simply "another AI tool".
 
 It provides a concrete path for moving AI-assisted development from:
 
@@ -437,6 +553,14 @@ The project already operates as a complete authoring runtime with:
 Its current position is clear:
 
 **a high-trust AegisCore authoring runtime, not an infinitely general platform.**
+
+---
+
+## License
+
+This project is released under the MIT License.
+
+See [LICENSE](LICENSE) for details.
 
 ---
 
